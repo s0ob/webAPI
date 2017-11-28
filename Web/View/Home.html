@@ -1,0 +1,113 @@
+<html ng-app='InstaApi'>
+<head>
+<title>InstaAPI</title>
+<script src="https://code.angularjs.org/1.3.0-rc.1/angular.min.js"></script>
+ 
+<script src="https://code.angularjs.org/1.3.0-rc.1/angular-resource.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>    
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <!-- Optional theme -->
+   <link rel=stylesheet href="theme.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    
+<script src='app.js'></script>
+
+</head>
+<body>
+    <div ng-controller='InstaApiCtrl' >
+  <h1 align='center' id='heading'>MOVIE DATA</h1><br>
+        <h4 align='center'><input type="text" 
+         ng-model="search" 
+            ng-model-options="{ debounce: 1000 }"
+         placeholder="Search for Movie" ng-mouseover='changebox()' ng-mouseleave='box()' /><button type='button' class='btn btn-success' ng-click='fetch()'>Search</button></h4>
+         <button class='btn btn-success' ><a href="actor.html">Movie Actor</a></button>
+    <hr/>
+<div class='container' >
+    
+    <ul style="list-style: none;">
+        <li ng-repeat='d in data.results'>
+           <div class='col-md-4'>
+               <div ng-if='d.poster_path!=null'>
+            <img src='https://image.tmdb.org/t/p/w500/{{d.poster_path}}'  height='350' width='300' data-toggle="modal" data-target="#myModal" ng-click='showDetail(d)' title='{{d.title}}' >
+                </div>  
+               <div ng-if='d.poster_path==null'>
+            <img src='/na.jpg'  height='350' width='300' data-toggle="modal" data-target="#myModal" ng-click='showDetail(d)'  title='{{d.title}}'  >
+                </div>
+               <br>
+            </div>
+            
+           </li>
+           <div ng-if="data.results.length === 0">Movie title you enter are not available</div>
+        </ul>
+        <div class='modal' id='myModal' tabindex="-1" role='dialog' aria-labelledby="myModalLabel" aria-hidden="true" >
+            <div class='modal-dialog'>
+                <div class='modal-content'>
+                <div class='modal-header'>
+                    <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class='modal-title' id='myModalLabel'>
+                    Movie Information
+                    </h4>
+                    </div>
+                    <div class='modal-body'>
+                      Movie Title:<b>{{q.original_title}}</b><hr>
+                     
+                        <b><i>{{q.overview}}</i></b>
+                        <hr/> Genre : <b>
+                        <ul style="list-style: none;">
+                            <li ng-repeat='g in q.genres'>
+                                <i>{{g.name}}</i>
+                            </li>
+                        </ul>        
+                        </b>
+                        
+                        <hr/>
+                        Release Date : <b>{{q.release_date}}</b>
+                        <hr/>
+                         Production Company : <b>
+                        <ul style="list-style: none;">
+                            <li ng-repeat='g in q.production_companies'>
+                                <i>{{g.name}}</i>
+                            </li>
+                        </ul>        
+                        </b>
+                        <hr/>
+                        Original Language : <b>{{q.original_language}}</b>
+                        <hr/>
+                        
+                        Revenue :$<b>{{q.revenue}}</b>
+                        <hr/>
+                        <span>IMDB rating : <b>{{q.vote_average}}</b></span><br>
+                         <i>{{q.tagline}}</i>
+                       <hr/>
+                         <div ng-if='q.backdrop_path!=null'>
+                    <img src='https://image.tmdb.org/t/p/w500/{{q.backdrop_path}}'>
+                        </div>
+                        <div ng-if='q.backdrop_path==null'>
+                            <img src='/na.jpg'>
+                        </div>
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function myfunction(){
+            alert("Wrong movie title");
+        }
+    </script>
+</div>
+    
+    
+    
+    
+</body>
+</html>

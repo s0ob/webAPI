@@ -1,0 +1,109 @@
+<html ng-app='InstaApi'>
+<head>
+<title>InstaAPI</title>
+<script src="https://code.angularjs.org/1.3.0-rc.1/angular.min.js"></script>
+ 
+<script src="https://code.angularjs.org/1.3.0-rc.1/angular-resource.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>    
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <!-- Optional theme -->
+   <link rel=stylesheet href="theme.css">
+   <link rel=stylesheet href="actor.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    
+<script src='app.js'></script>
+
+</head>
+<body>
+    <div ng-controller='InstaApiCtrls' >
+  <h1 align='center' id='heading'>MOVIE ACTOR</h1><br>
+        <h4 align='center'><input type="text" 
+         ng-model="searchActors" 
+            ng-model-options="{ debounce: 1000 }"
+         placeholder="Search for Movie Actor" ng-mouseover='changebox()' ng-mouseleave='box()' /><button type='button' class='btn btn-success' ng-click='getActors()'>Search</button></h4>
+        <button class='btn btn-success' ><a href="Home.html">Movie Data</a></button>
+    <hr/>
+<div class='container' >
+	 <div class=" class=col-md-4">
+    <ul>
+			<div ng-show="!moviesLoaded">
+				<li ng-repeat="actor in actors" class="col-md-4" >
+					<h3>{{actors.name}}</h3>
+					<img ng-src="{{SITE_PATH}}/{{actor.profile_path}}" ng-click="getMoviesById(actor.id)"/>
+					<br>
+				</li>
+				</div>
+				 <div ng-if="actors.length === 0">No Actor Found</div>
+			<div ng-show="moviesLoaded" 
+				<li ng-repeat="c in cast" class="col-md-4">
+				   
+            <img src='https://image.tmdb.org/t/p/w500/{{c.poster_path}}' data-toggle="modal" data-target="#myModal" ng-click='showDetail(c)' >
+            <br>
+            </li>
+            </ul>
+            <div class='modal' id='myModal' tabindex="-1" role='dialog' aria-labelledby="myModalLabel" aria-hidden="true" >
+            <div class='modal-dialog'>
+                <div class='modal-content'>
+                <div class='modal-header'>
+                    <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class='modal-title' id='myModalLabel'>
+                    Movie Information
+                    </h4>
+                    </div>
+                    <div class='modal-body'>
+                      Actor Name:<b>{{r.name}}</b><hr>
+                     
+                         <hr/>
+                        Gender : <b>{{r.gender}}</b>
+                        <hr/>
+                        
+                        <hr/>
+                        Biography : <b>{{r.biography}}</b>
+                        <hr/>
+                         Production Company : <b>
+                        <ul style="list-style: none;">
+                            <li ng-repeat='g in q.production_companies'>
+                                <i>{{g.name}}</i>
+                            </li>
+                        </ul>        
+                        </b>
+                        <hr/>
+                        Original Language : <b>{{q.original_language}}</b>
+                        <hr/>
+                        
+                        Revenue :$<b>{{q.revenue}}</b>
+                        <hr/>
+                        <span>IMDB rating : <b>{{q.vote_average}}</b></span><br>
+            
+                       <hr/>
+                         <div ng-if='q.backdrop_path!=null'>
+                    <img src='https://image.tmdb.org/t/p/w500/{{q.backdrop_path}}'>
+                        </div>
+                        <div ng-if='q.backdrop_path==null'>
+                            <img src='/na.jpg'>
+                        </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function myfunction(){
+            alert("Wrong movie title");
+        }
+    </script>
+</div>
+    
+ </div>  
+    
+    
+</body>
+</html>

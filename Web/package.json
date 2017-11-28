@@ -1,0 +1,22 @@
+{
+  "name": "Movie Data",
+  "version": "1.0.0",
+  "description": "Movie information",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "hapi": "^16.6.2",
+    "hoek": "^5.0.0",
+    "moment": "^2.19.1",
+    "restify": "^4.3.1",
+    "restify-jwt": "^0.4.0",
+    "mongodb":"^2.2.33",
+    "mongoose":"4.2.4",
+    "sequelize": "^4.15.0",
+    "serve-static-restify": "^1.0.0",
+    "sqlite3": "^3.1.13"
+  }
+}

@@ -1,0 +1,16 @@
+img{
+    height: 350px;
+    width: 300px;
+}
+#container {
+  height: 100%;
+  padding: 2rem;
+  text-align: center;
+  font-family: sans-serif;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0) 100%), url("https://image.tmdb.org/t/p/w1280/56El17WVXXqyZCZvSC8Nyc8yPgx.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  overflow: auto;
+}
